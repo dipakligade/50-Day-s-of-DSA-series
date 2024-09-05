@@ -17,3 +17,131 @@ class Solution {
         return Xor;
     }
 }
+
+Discription of the Solution:
+
+Consider Array:
+  - nums[] = {4, 1, 2, 1, 2}
+
+Initial Value:
+- Xor = 0 (initialized to 0)
+
+Step-by-Step XOR Calculation:
+
+    First Iteration (i = 0):
+    
+      - Operation:** `Xor = Xor ^ nums[0]`
+        - Values:** `Xor = 0`, `nums[0] = 4`
+    
+          - Binary Representation:
+              - `0` in binary: `0000`
+              - `4` in binary: `0100`
+    
+          - XOR Operation:
+              ```
+                0000
+              ^ 0100
+              ------
+                0100
+              ```
+        - Result: `0100` in binary = `4` in decimal
+        - Updated Xor: `4`
+    
+    
+    
+    Second Iteration (i = 1):
+    
+      - Operation: `Xor = Xor ^ nums[1]`
+    
+        - Values: `Xor = 4`, `nums[1] = 1`
+    
+          - Binary Representation:
+              - `4` in binary: `0100`
+              - `1` in binary: `0001`
+    
+        - XOR Operation:
+            ```
+              0100
+            ^ 0001
+            ------
+              0101
+            ```
+      - Result: `0101` in binary = `5` in decimal
+      - Updated Xor: `5`
+    
+    
+    
+    Third Iteration (i = 2):
+    
+    - Operation: `Xor = Xor ^ nums[2]`
+    
+      - Values: `Xor = 5`, `nums[2] = 2`
+    
+        - Binary Representation:
+          - `5` in binary: `0101`
+          - `2` in binary: `0010`
+    
+      - XOR Operation:
+            ```
+              0101
+            ^ 0010
+            ------
+              0111
+            ```
+    
+    - Result: `0111` in binary = `7` in decimal
+    - Updated Xor: `7`
+    
+    
+    
+    
+    Fourth Iteration (i = 3):
+    
+      - Operation: `Xor = Xor ^ nums[3]`
+    
+        - Values: `Xor = 7`, `nums[3] = 1`
+    
+          - Binary Representation:
+              - `7` in binary: `0111`
+              - `1` in binary: `0001`
+    
+          - XOR Operation:
+            ```
+              0111
+            ^ 0001
+            ------
+              0110
+            ```
+    
+      - Result: `0110` in binary = `6` in decimal
+      - Updated Xor: `6`
+    
+    
+    
+    
+    Fifth Iteration (i = 4):
+    
+      - Operation: `Xor = Xor ^ nums[4]`
+    
+        - Values: `Xor = 6`, `nums[4] = 2`
+    
+            - Binary Representation:
+              - `6` in binary: `0110`
+              - `2` in binary: `0010`
+    
+            - XOR Operation:
+    
+                  ```
+                    0110
+                  ^ 0010
+                  ------
+                    0100
+                  ```
+    
+        - Result: `0100` in binary = `4` in decimal
+        - Updated Xor: `4`
+    
+
+ Final Result:
+- After processing all elements of the array, the final value of `Xor` is `4`.
+
