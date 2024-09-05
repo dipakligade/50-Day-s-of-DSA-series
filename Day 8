@@ -1,32 +1,19 @@
   
-   Problem Statement: Maximum Consecutive Ones
-   Problem: https://leetcode.com/problems/max-consecutive-ones/
+   Problem Statement: Find the number that appears once, and other numbers twice. or  Single Number
+
+   Problem: https://leetcode.com/problems/single-number
 
 Solution of the Problem:
 
-  class Solution {
-    public int findMaxConsecutiveOnes(int[] nums) {
+class Solution {
+    public int singleNumber(int[] nums) {
 
-        int max=0;
-        int count =0;
+        int Xor =0;
 
-        for(int i=0; i<nums.length; i++)
+        for(int i =0; i<nums.length; i++)
         {
-            if(nums[i]==1)
-            {
-               count++;
-                if(count>max)
-                {
-                    max=count;
-                }
-            }
-
-            else
-            {
-              count=0;
-            }
-       }
-
-        return max;
+            Xor = Xor^nums[i];
+        }
+        return Xor;
     }
 }
