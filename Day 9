@@ -1,0 +1,55 @@
+  
+   Problem Statement: Sort an array of 0's 1's and 2's or Sort Colors
+
+   Problem: https://leetcode.com/problems/sort-colors/
+
+Solution of the Problem:
+
+class Solution {
+    public void sortColors(int[] nums) {
+
+        int low=0, mid=0, high=nums.length-1;
+
+        while(mid<=high)
+        {
+          if(nums[mid]==0)
+            {
+                swap(nums, low, mid);
+                low++;
+                mid++;
+            }
+            else if(nums[mid]==1)
+            {
+                mid++;
+            }
+            else  
+            {
+                swap(nums, mid, high);
+                high--;
+            }
+        }
+           
+    }
+    public void swap(int[] nums, int i, int j)
+    {
+        int temp = nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+    }
+}
+
+I used Dutch National Flag Algorithum in this problem to solve, following is the Explanation of this Problem
+
+Explanation:
+•	low, mid, and high are three pointers:
+    •	low marks the boundary for the last 0 in the sorted portion of the array.
+    •	mid is the current element being evaluated.
+    •	high marks the boundary for the first 2 in the sorted portion of the array.
+
+•	The loop runs while mid <= high:
+    •	If nums[mid] == 0: Swap nums[mid] with nums[low], then increment both low and mid.
+    •	If nums[mid] == 1: Just move mid forward.
+    •	If nums[mid] == 2: Swap nums[mid] with nums[high] and decrement high. Do not move mid forward because the swapped element needs to be evaluated.
+
+This algorithm runs in O(n) time with O(1) space, making it very efficient for this type of problem.
+    
