@@ -1,0 +1,32 @@
+  
+   Problem Statement: Best Time to Buy and Sell Stock or Stock Buy and Sell
+
+   Problem: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
+Solution of the Problem:
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int minP=prices[0];
+        int maxP = 0;
+
+        for(int i = 0; i<prices.length; i++)
+        {
+            int cost = prices[i]-minP;
+
+            if(maxP < cost)
+            {
+                maxP=cost;
+            }
+
+            if(minP>prices[i])
+            {
+                minP=prices[i];
+            }
+
+        } 
+
+        return maxP;
+
+     }
+}
