@@ -1,0 +1,66 @@
+  
+   Problem Statement: Binary Search to find X in sorted array or Binary Search
+   Problem: https://leetcode.com/problems/binary-search/
+
+Solution of the Problem:
+
+class Solution {
+    public int search(int[] nums, int target) {
+
+        int low=0;
+        int heigh = nums.length -1;
+
+        while(low<=heigh)
+        {
+            int mid = (low+heigh)/2;
+
+            if(nums[mid] == target)
+            {
+                return mid;
+            }else if(target>nums[mid])
+            {
+                low = mid+1;
+            }else{
+                heigh = mid-1;
+            }
+        }
+        return -1;
+    }
+}
+
+Explanation of the code
+
+Binary search is used to find the index of a target value within a sorted array. 
+
+1. Initialization:
+  
+     int low = 0;
+     int heigh = nums.length - 1;
+     
+     - `low` is set to the start of the array (index 0).
+     - `heigh` is set to the end of the array (index `nums.length - 1`).
+
+2. While Loop:
+  
+     while (low <= heigh)
+   
+     - The loop continues as long as `low` is less than or equal to `heigh`.
+
+3. Calculate Midpoint:
+   
+     int mid = (low + heigh) / 2;
+     
+     - The midpoint (`mid`) of the current search range is calculated.
+
+4. Searching Logic (not shown):
+     - In a complete binary search algorithm, you would compare the target value with the element at the `mid` index:
+         - If the `target` is equal to the element at `mid`, return `mid`.
+         - If the `target` is less than the element at `mid`, adjust the `heigh` to `mid - 1` to search the left half.
+         - If the `target` is greater than the element at `mid`, adjust the `low` to `mid + 1` to search the right half.
+
+5. Return Statement:
+   
+     return -1;
+  
+     - If the loop exits without finding the target, the method returns `-1`, indicating that the target is not present in the array.
+
