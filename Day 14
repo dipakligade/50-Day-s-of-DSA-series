@@ -1,0 +1,49 @@
+  
+   Problem Statement: Search Single Element in a Sorted Array or Single Element in a Sorted Array
+   Problem: https://leetcode.com/problems/single-element-in-a-sorted-array
+Solution of the Problem:
+
+class Solution {
+    public int singleNonDuplicate(int[] nums) {
+
+        if (nums.length == 1) return nums[0];
+
+        int low = 0;
+        int high = nums.length - 1;
+
+        while (low < high) {
+
+            int mid = low + (high - low) / 2;
+
+            if (mid % 2 == 1) mid--; 
+
+            if (nums[mid] == nums[mid + 1]) {
+                low = mid + 2;
+            } else {
+            high = mid;
+            }
+        }
+
+        return nums[low];
+    }
+}
+
+
+Explanation of the code:
+
+-The code leverages the property that the single non-duplicate element is always surrounded by pairs of duplicate elements.
+-By comparing elements in pairs (ensuring mid is even), the code can efficiently determine whether the single non-duplicate is to the left or right of mid.
+-The binary search approach effectively narrows down the search space until the single non-duplicate element is found.
+
+
+Example:
+
+Consider the array nums = [1, 1, 2, 3, 3].
+
+-Initially, low = 0 and high = 4.
+-The loop iterates:
+    -mid = 2, nums[mid] == nums[mid + 1], so low = 4.
+    -mid = 3, nums[mid] != nums[mid + 1], so high = 3.
+-The loop terminates with low = 3.
+-The function returns nums[3], which is the single non-duplicate element.
+
