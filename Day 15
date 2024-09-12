@@ -1,0 +1,75 @@
+  
+   Problem Statement: Next Permutation
+   Problem: https://leetcode.com/problems/next-permutation
+
+Solution of the Problem:
+
+class Solution {
+    public void nextPermutation(int[] nums) {
+        
+        int index=-1;
+
+       for(int i= nums.length-2; i>=0; i-- )
+        {
+            if(nums[i] < nums[i+1])
+            {
+                index = i;
+            }
+        }
+
+        if(index == -1)
+        {
+           reverse(nums, index + 1, nums.length - 1);
+           return;
+        }
+
+        int j = nums.length-1;
+
+        while(j>index && nums[j]<=nums[index])
+        {
+            j--;
+        }
+
+        swap(nums, index, j);
+
+        reverse(nums, index+1, nums.length-1);
+  }
+      private void reverse(int[] nums, int index, int n){
+        while(index<n){
+            swap(nums, index, n);
+            index++;
+            n--;
+        }
+     }
+
+     private void swap(int[] nums, int index,int n){
+        int temp=nums[index];
+        nums[index]=nums[n];
+        nums[n]=temp;
+
+     }    
+
+}
+
+Explanation of the code:
+
+  -A permutation is an arrangement of elements in a specific order. The "next" permutation is the one that comes immediately after the current one in lexicographic order.
+  
+  Here's a breakdown of the code:
+  
+    -Initialization:  
+      -index is initialized to -1. This variable will be used to store the index of the element that needs to be swapped to find the next permutation.
+  
+    -Iterating through the array:  
+      -The for loop iterates through the array from the second-to-last element (nums.length-2) to the beginning (index 0).
+  
+    -Finding the index of the element to swap:  
+      -Inside the loop, the condition nums[i] < nums[i+1] checks if the current element is less than the next element. If this condition is true, it means that the current element is part of a decreasing subsequence. The index of the current element (i) is stored in the index variable.
+  
+    -Swapping elements:  
+      -Once the index is found, the code needs to swap the element at index with the smallest element that is greater than it. This will create the next permutation.
+  
+    -Reversing the remaining elements:  
+      -After the swap, the remaining elements from index+1 to the end of the array need to be reversed to ensure that the resulting permutation is the next one in lexicographic order.
+ 
+The remaining part of the code, which is not shown in the prompt, would implement the swapping and reversing steps.
