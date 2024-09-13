@@ -1,0 +1,134 @@
+  
+   Problem Statement: Longest Consecutive Sequence in an Array or Longest Consecutive Sequence
+   Problem: https://leetcode.com/problems/longest-consecutive-sequence
+
+Solution of the Problem:
+  Solution no. 1
+
+      import java.util.Arrays;
+      
+      class Solution { 
+          public int longestConsecutive(int[] nums) { 
+              if (nums.length == 0) return 0; // Edge case: empty array
+      
+              Arrays.sort(nums);
+                      
+              int longest = 1; 
+              int cur_count = 1; 
+      
+              for (int i = 1; i < nums.length; i++) {
+                  if (nums[i] != nums[i - 1]) 
+                  { 
+                      if (nums[i] == nums[i - 1] + 1) 
+                      { 
+                          cur_count++;
+                      } else {
+                          longest = Math.max(longest, cur_count); 
+                          cur_count = 1; 
+                       }
+                  }
+              }
+              return Math.max(longest, cur_count); 
+          }
+      }
+
+    Explanation of the Code:
+
+      To finds the longest consecutive sequence in a sorted array by following these steps:
+
+        1. Edge Case Handling:
+           - Checks if the input array is empty. If so, it immediately returns 0 as there can be no consecutive sequence in an empty array.
+        
+        2. Sorting:
+           - Sorts the input array in ascending order using the `Arrays.sort` method. This is crucial for the subsequent logic to work correctly.
+        
+        3. Initializing Variables:
+           - Initializes two variables: `longest` to 1 (representing the current longest sequence) and `cur_count` to 1 (representing the length of the current sequence).
+        
+        4. Iterating Over Array:
+           - Iterates over the sorted array, starting from the second element (index 1).
+        
+        5. Checking for Consecutive Sequence:
+           - For each element, compares it with its previous element.
+             - If the current element is one more than the previous element, it means the sequence continues. In this case, increments `cur_count` to increase the length of the current sequence.
+             - If the current element is not one more than the previous element, it means the current sequence ends. 
+                Compares `cur_count` with `longest` and updates `longest` if necessary to keep track of the longest sequence found so far. 
+                Resets `cur_count` to 1 for the next potential sequence.
+        
+        6. Returning Longest:
+           - After iterating through the entire array, returns the maximum of `longest` and `cur_count`. This ensures that the longest sequence, whether it's the last one or a previous one, is captured.
+        
+    This approach leverages the sorted order of the array to efficiently identify and calculate the length of the longest consecutive sequence. By comparing each element with its previous element, the code can easily determine if the sequence continues or ends.
+
+
+
+  Solution no. 2
+
+import java.util.Arrays;
+    
+    class Solution { 
+        public int longestConsecutive(int[] nums) { 
+
+            if (nums.length == 0) return 0; 
+    
+            int longest = 1;
+            Set<Integer> set = new HashSet<>();
+    
+            for(int i=0; i<nums.length; i++)
+            {
+                set.add(nums[i]);
+            }
+    
+            for(int it : set)
+            {
+                if(!set.contains(it-1))
+                {
+                    int cnt = 1;
+                    int x =it;
+                    while(set.contains(x+1))
+                    {
+                        x=x+1;
+                        cnt++;
+                    }    
+                    longest=Math.max(longest, cnt);
+                }
+            }            
+            return longest; 
+        }
+    }
+
+  Explanation of the Code:
+
+    To finds the longest consecutive sequence in an array by following these steps:
+  
+      1. Edge Case Handling:
+         - Checks if the input array is empty. If so, it immediately returns 0 as there can be no consecutive sequence in an empty array.
+      
+      2. Set Creation:
+         - Creates a `HashSet` to store unique elements from the input array. This ensures that duplicate elements are not considered.
+      
+      3. Adding Elements to Set:
+         - Iterates over each element in the input array and adds it to the `HashSet`.
+      
+      4. Iterating Over Set:
+         - Iterates over each element in the `HashSet`.
+      
+      5. Identifying Sequence Start:
+         - For each element, checks if the previous element is not present in the `HashSet`. This indicates that the current element might be the start of a consecutive sequence.
+      
+      6. Iterating Through Sequence:
+         - If the current element is a potential start, iterates through the sequence by incrementing the element and checking if the next element is present in the `HashSet`. This continues until a non-consecutive element is found.
+      
+      7. Updating Longest:
+         - The length of the current sequence is calculated (including the starting element).
+         - Compares the length of the current sequence with the previously recorded longest sequence and updates the longest sequence if necessary.
+      
+      8. Returning Longest:
+         - After iterating through all elements, returns the length of the longest consecutive sequence found.
+      
+  This approach ensures that only unique elements are considered and efficiently identifies and calculates the length of the longest consecutive sequence.
+      
+
+
+
+
