@@ -1,0 +1,103 @@
+  
+   Problem Statement: Set Matrix Zeroes
+   Problem: https://leetcode.com/problems/set-matrix-zeroes/
+
+Solution of the Problem:
+
+  class Solution {
+      public void setZeroes(int[][] matrix) {
+  
+           int n = matrix.length;
+           int m = matrix[0].length;
+           
+           
+           int row[] = new int[n];
+           int col[] = new int[m]; 
+  
+            for(int i=0; i<n; i++)
+             {
+                for(int j=0; j<m; j++)
+                {
+                    if(matrix[i][j]== 0)
+                    {
+                        row[i]=1;
+                        col[j] = 1;
+                    }
+                }
+             }
+    
+            for(int i=0; i<n; i++)
+             {
+                for(int j =0; j<m; j++)
+                {
+                    if(row[i]==1 || col[j] ==1)
+                    {
+                        matrix[i][j] = 0;
+                    }
+                }
+             }   
+      }
+  }
+ 
+
+Explanation of the Code:
+
+
+  The `setZeroes` method is designed to modify a given matrix (represented by a 2D integer array) by setting all elements in rows and columns containing zeros to zero.
+  
+  
+  1. Function Signature:
+       - `public void setZeroes(int[][] matrix)`:
+         - The function takes a 2D integer array `matrix` as input and modifies it in-place.
+         - It returns `void` as it doesn't return any value.
+
+  
+  2. Variable Declarations:
+       - `int n = matrix.length;`:
+           - Stores the number of rows in the matrix.
+
+       - `int m = matrix[0].length;`:
+           - Stores the number of columns in the matrix.
+
+       - `int row[] = new int[n];`:
+           - Creates an array `row` of size `n` to keep track of whether a row has a zero element.
+
+       - `int col[] = new int[m];`:
+           - Creates an array `col` of size `m` to keep track of whether a column has a zero element.
+
+  
+  3. Iterating through the Matrix:
+       - `for (int i = 0; i < n; i++) {`:
+           - Iterates through each row of the matrix.
+
+       - `for (int j = 0; j < m; j++) {`:
+           - Iterates through each column of the current row.
+
+       - `if (matrix[i][j] == 0) {`:
+           - If the current element is zero:
+
+               - `row[i] = 1;`:
+                   - Marks the corresponding row in the `row` array as having a zero.
+               - `col[j] = 1;`:
+                   - Marks the corresponding column in the `col` array as having a zero.
+
+  
+  4. Setting Zeros:
+       - `for (int i = 0; i < n; i++) {`:
+           - Iterates through each row again.
+
+       - `for (int j = 0; j < m; j++) {`:
+           - Iterates through each column of the current row again.
+
+       - `if (row[i] == 1 || col[j] == 1) {`:
+           - If either the current row or column has a zero:
+             - `matrix[i][j] = 0;`:
+               - Sets the current element to zero.
+
+  
+  Overall Logic:
+
+  - The code uses two arrays, `row` and `col`, to efficiently keep track of rows and columns containing zeros.
+  - By marking rows and columns with zeros, the code can efficiently set all elements in those rows and columns to zero in a single pass.
+  - This approach avoids the need to iterate through the entire matrix multiple times, making it more efficient.
+  
