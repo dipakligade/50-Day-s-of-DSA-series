@@ -1,0 +1,73 @@
+  
+   Problem Statement: Count subarrays with given sum or Subarray Sum Equals K
+   Problem: https://leetcode.com/problems/subarray-sum-equals-k/
+Solution of the Problem:
+
+ class Solution {
+    public int subarraySum(int[] nums, int k) {
+
+        int cnt = 0;  
+         
+
+        for(int i =0; i<nums.length; i++)
+        {
+            int sum = 0;
+            for(int j=i; j<nums.length;j++)
+            {
+                sum += nums[j];
+
+                if(sum==k)
+                {
+                    cnt++;
+                }
+            }
+       
+        }
+        return cnt;
+    }
+}
+ 
+
+Explanation of the Code:
+
+The `subarraySum` function aims to count the number of subarrays within a given array `nums` whose sum equals a target value `k`.
+
+  Algorithm:
+  
+    1. Initialization:
+       - `cnt` is initialized to 0 to store the count of subarrays with the desired sum.
+    
+    2. Outer Loop:
+       - Iterates over each element `nums[i]` in the array. This element will be the starting point of potential subarrays.
+    
+    3. Inner Loop:
+       - Iterates from the current index `i` to the end of the array. This loop calculates the cumulative sum of elements from `nums[i]` to `nums[j]`.
+       - If the calculated sum equals `k`, it means a subarray with the desired sum has been found, and `cnt` is incremented.
+    
+    4. Return Value:
+       - After processing all subarrays, the function returns `cnt`, which represents the total count of subarrays with a sum equal to `k`.
+    
+   Explanation:  
+    - The outer loop ensures that every element in the array is considered as the starting point of a potential subarray.
+    - The inner loop calculates the cumulative sum of elements from the current starting point `i` to the end of the array.
+    - If the cumulative sum matches the target `k`, it indicates that a subarray with the desired sum exists.
+    - The `cnt` variable keeps track of the number of such subarrays found.
+  
+  Example:
+  
+   Consider the array `nums = [1, 1, 1]` and the target `k = 2`.
+    
+    - Outer loop iteration 1:
+       - `i = 0`, `sum = 1` (subarray [1])
+       - `i = 0`, `sum = 2` (subarray [1, 1])
+       - `cnt` becomes 1.
+    - Outer loop iteration 2:
+       - `i = 1`, `sum = 1` (subarray [1])
+       - `cnt` remains 1.
+    - Outer loop iteration 3:
+       - `i = 2`, `sum = 1` (subarray [1])
+       - `cnt` remains 1.
+
+Finally, the function returns `cnt = 1`, indicating that there is one subarray with a sum of 2 in the given array.
+
+
