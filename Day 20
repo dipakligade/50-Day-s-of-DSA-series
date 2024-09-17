@@ -1,0 +1,81 @@
+  
+   Problem Statement: Find the smallest Divisor or Find the Smallest Divisor Given a Threshold
+   Problem: https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/
+Solution of the Problem:
+
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+
+        if(nums.length > threshold) return -1;
+
+         int maxi = Integer.MIN_VALUE;
+         for (int i = 0; i < nums.length; i++) {
+             maxi = Math.max(maxi, nums[i]);
+         }
+          int low =0;
+          int high = maxi;
+
+         while(low<=high)
+         {
+           int mid = (low+high)/2;
+
+            if(sum(nums, mid) <= threshold)
+            {
+                high = mid-1;
+            }
+            else {
+                low = mid+1;
+            }
+         }
+        return low;
+      }
+    int sum(int[] nums, int div)
+    {
+        int sum = 0;
+        for(int i = 0; i<nums.length; i++)
+        {
+            sum += Math.ceil((double)(nums[i]) / (double)(div));
+        }
+        return sum;
+    }
+}
+
+
+Code Breakdown:
+
+1. `Solution` class: This class defines the `smallestDivisor` method, which is the core of the solution.
+
+2. `smallestDivisor` method:
+     - Edge case: If the number of elements in the array `nums` is greater than the threshold, it's impossible to find a divisor that meets the criteria. In this case, the method returns -1.
+    
+      - Finding maximum element: The `maxi` variable is initialized to the minimum integer value. It then iterates through the array `nums` to find the maximum element, which will serve as the upper bound for the binary search.
+         - Binary search initialization:** The `low` variable is initialized to 0, and the `high` variable is initialized to the maximum element found in the array.
+        
+      - Binary search loop:
+           - The `mid` variable is calculated as the average of `low` and `high`.
+           - If the sum of the rounded-up divisions of all elements in `nums` by `mid` is less than or equal to the threshold, it means `mid` is a potential candidate for the smallest divisor. In this case, we update `high` to `mid - 1` to explore smaller divisors.
+           - Otherwise, if the sum is greater than the threshold, it means `mid` is too small, and we update `low` to `mid + 1` to explore larger divisors.
+         - Return value: After the binary search loop terminates, the value of `low` will be the smallest divisor that meets the criteria. The method returns this value.
+
+3. `sum` method:
+   - This method calculates the sum of the rounded-up divisions of all elements in `nums` by a given `div`.
+   - It iterates through the array `nums` and adds the rounded-up division of each element to the `sum` variable.
+   - Finally, it returns the calculated `sum`.
+
+Explanation:
+
+The code effectively implements a binary search algorithm to find the smallest divisor that satisfies the given conditions. It starts with a wide range of possible divisors and iteratively narrows down the search space until it finds the optimal solution. The `sum` method is used to efficiently calculate the sum of rounded-up divisions for each potential divisor.
+
+Key Points:
+
+- The edge case handling ensures that the method returns -1 if the problem is unsolvable.
+- The binary search approach provides efficient logarithmic time complexity.
+- The `sum` method avoids unnecessary floating-point calculations by using integer division and rounding up.
+- The code is well-structured and easy to understand.
+
+Potential Improvements:
+
+- Consider using a more efficient method for calculating the sum if the array `nums` is very large.
+- If the problem requires handling negative numbers, you might need to adjust the logic accordingly.
+
+Overall, the provided code is a well-implemented and efficient solution to the given problem.
