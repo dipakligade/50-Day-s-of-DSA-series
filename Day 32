@@ -1,0 +1,49 @@
+  
+   Problem Statement: Maximum Product Subarray 
+   Problem: https://leetcode.com/problems/maximum-product-subarray/
+Solution of the Problem:
+
+-There are two Way to SOlve the Problem
+
+  -Solution1:
+
+      class Solution {
+         public int maxProduct(int[] nums) {
+      
+              int max = Integer.MIN_VALUE;
+              for(int i=0; i<nums.length; i++)
+              {
+                  int prod = 1;
+                  for(int j =i; j<nums.length; j++)
+                  {
+                      prod = prod*nums[j];
+      
+                      max = Math.max(max, prod);
+      
+                  }
+              }
+              return max;
+          }
+      }
+
+
+  -Solution2:
+
+class Solution {
+    public int maxProduct(int[] nums) {
+
+        int max = Integer.MIN_VALUE;
+        int pre =1, suf=1;  
+        for(int i=0; i<nums.length; i++)
+        {
+            if(pre == 0) pre = 1;
+            if(suf == 0) suf = 1;
+            pre = pre * nums[i];
+            suf = suf * nums[nums.length-i-1];
+            max = Math.max(max, Math.max(pre, suf));
+        }
+        return max;
+    }
+}
+
+
