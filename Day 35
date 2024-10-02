@@ -1,0 +1,31 @@
+  
+   Problem Statement: Kth Missing Positive Number
+   Problem: https://leetcode.com/problems/kth-missing-positive-number/
+Solution of the Problem:
+
+-Solution:
+
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        int missingCount = 0;  // Count of missing numbers found
+        int currentNumber = 1; // The number we are checking
+        int i = 0;             // Pointer for the array 'arr'
+
+        // Iterate until we find the k-th missing number
+        while (missingCount < k) {
+            // If the current number is not in the array, it's missing
+            if (i >= arr.length || arr[i] != currentNumber) {
+                missingCount++;  // Increment missing numbers count
+                if (missingCount == k) {
+                    return currentNumber;  // Return when k-th missing is found
+                }
+            } else {
+                i++;  // Move to the next element in arr
+            }
+            currentNumber++;  // Check the next positive number
+        }
+
+        // In case we exit the loop (this should never happen with valid input)
+        return -1;
+    }
+}
