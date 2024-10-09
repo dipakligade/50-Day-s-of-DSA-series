@@ -1,0 +1,52 @@
+  
+Problem Statement: Split Array Largest Sum 
+Problem: https://leetcode.com/problems/split-array-largest-sum/
+Solution of the Problem:
+
+ -Solution:
+
+    class Solution {
+        public int splitArray(int[] nums, int k) {
+            int low = Integer.MIN_VALUE;
+            int high = 0;
+            
+
+            for (int num : nums) {
+                low = Math.max(low, num);  // max single element
+                high += num;  // sum of all elements
+            }
+            
+            // Binary search to find the minimum possible largest sum
+            while (low < high) {
+                int mid = low + (high - low) / 2;
+                
+                if (canSplit(nums, k, mid)) {
+                    high = mid;  // Try for a smaller maximum sum
+                } else {
+                    low = mid + 1;  // Increase the minimum sum
+                }
+            }
+            
+            return low;  // This will be the minimum possible largest sum
+        }
+        
+
+        private boolean canSplit(int[] nums, int k, int target) {
+            int count = 1;  // We always have at least one subarray
+            int currentSum = 0;
+            
+            for (int num : nums) {
+                if (currentSum + num > target) {
+                    count++;
+                    currentSum = num;  // Start a new subarray
+                    if (count > k) {
+                        return false;  // Too many subarrays
+                    }
+                } else {
+                    currentSum += num;  // Continue adding to the current subarray
+                }
+            }
+            
+            return true;  // We managed to split into <= k subarrays
+        }
+    }
