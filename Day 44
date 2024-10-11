@@ -1,0 +1,32 @@
+  
+Problem Statement: Number of Recent Calls
+Problem: https://leetcode.com/problems/number-of-recent-calls/
+
+Solution of the Problem:
+
+ -Solution:
+
+    import java.util.LinkedList;
+    import java.util.Queue;
+    
+    class RecentCounter {
+        private Queue<Integer> requests;
+    
+        public RecentCounter() {
+            requests = new LinkedList<>();
+        }
+        
+        public int ping(int t) {
+            // Add the new request time to the queue
+            requests.offer(t);
+            
+            // Remove requests that are older than 3000 milliseconds from the current time
+            while (requests.peek() < t - 3000) {
+                requests.poll();
+            }
+            
+            // The size of the queue represents the number of recent requests
+            return requests.size();
+        }
+    }
+    
