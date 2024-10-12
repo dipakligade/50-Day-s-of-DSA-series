@@ -1,0 +1,38 @@
+  
+Problem Statement: Find the Difference of Two Arrays
+Problem: https://leetcode.com/problems/find-the-difference-of-two-arrays/
+
+Solution of the Problem:
+
+ -Solution:
+    
+    class Solution {
+        public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
+            // Convert arrays to sets to remove duplicates and make lookups efficient
+            Set<Integer> set1 = new HashSet<>();
+            Set<Integer> set2 = new HashSet<>();
+            
+            for (int num : nums1) {
+                set1.add(num);
+            }
+            
+            for (int num : nums2) {
+                set2.add(num);
+            }
+            
+            // Find elements in nums1 that are not in nums2
+            List<Integer> list1 = new ArrayList<>(set1);
+            list1.removeAll(set2);
+            
+            // Find elements in nums2 that are not in nums1
+            List<Integer> list2 = new ArrayList<>(set2);
+            list2.removeAll(set1);
+            
+            // Prepare the answer as a list of lists
+            List<List<Integer>> answer = new ArrayList<>();
+            answer.add(list1);
+            answer.add(list2);
+            
+            return answer;
+        }
+    }
